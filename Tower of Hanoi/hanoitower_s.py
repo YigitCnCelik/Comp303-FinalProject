@@ -6,7 +6,7 @@ tower_radius = 10
 tower_distance = 250
 tower_altitude = -100
 
-SPEED = 1
+SPEED = 5
 
 
 tower_loc = {
@@ -129,7 +129,7 @@ def moveTower(height, fromPole, withPole, toPole, plates):
 
 if __name__ == '__main__':
 	draw_towers()
-	n = 5
+	n = 4
 	plates = draw_plates(n)
 
 	for i in range(n):
