@@ -3,34 +3,34 @@ import time
 import sys
 
 size = 20
-tower_width = 100
-tower_height = 200
-tower_radius = 10
-tower_distance = 250
-tower_altitude = -100
+towerOfWidth = 100
+towerOfHeight = 200
+towerOfRadious = 10
+towerOfDistance = 250
+towerOfAltitude = -100
 
 SPEED = 5
 
-tower_loc = {
+towerLocations = {
     "A": -1,
     "B": 0,
     "C": 1
 }
 
-tower_poles = {
+towerRods = {
     "A": [],
     "B": [],
     "C": []
 }
 
 FillColors = [
-    "#d25b6a",
-    "#d2835b",
-    "#e5e234",
-    "#83d05d",
-    "#2862d2",
-    "#35b1c0",
-    "#5835c0"
+    "#ffb6c1",  
+    "#ffd700",  
+    "#add8e6",  
+    "#98fb98",  
+    "#c1d1ff",  
+    "#afeeee",  
+    "#e6e6fa"   
 ]
 
  # iterative algorithm stack class method 
@@ -101,17 +101,17 @@ def set_tower():
 
     t.left(90)
     t.begin_poly()
-    t.forward(tower_width)
-    t.circle(tower_radius, 180)
-    t.forward(tower_width - tower_radius)
+    t.forward(towerOfWidth)
+    t.circle(towerOfRadious, 180)
+    t.forward(towerOfWidth - towerOfRadious)
     t.right(90)
-    t.forward(tower_height)
-    t.circle(tower_radius, 180)
-    t.forward(tower_height)
+    t.forward(towerOfHeight)
+    t.circle(towerOfRadious, 180)
+    t.forward(towerOfHeight)
     t.right(90)
-    t.forward(tower_width - tower_radius)
-    t.circle(tower_radius, 180)
-    t.forward(tower_width)
+    t.forward(towerOfWidth - towerOfRadious)
+    t.circle(towerOfRadious, 180)
+    t.forward(towerOfWidth)
     t.end_poly()
     p = t.get_poly()
     turtle.register_shape("tower", p)
@@ -122,11 +122,11 @@ def draw_towers():
     tower = turtle.Turtle("tower")
     tower.speed(0)
     tower.penup()
-    tower.goto(-tower_distance, tower_altitude)
+    tower.goto(-towerOfDistance, towerOfAltitude)
     tower.stamp()
-    tower.goto(0, tower_altitude)
+    tower.goto(0, towerOfAltitude)
     tower.stamp()
-    tower.goto(tower_distance, tower_altitude)
+    tower.goto(towerOfDistance, towerOfAltitude)
 
 
 def draw_plates(pn):
@@ -161,18 +161,18 @@ def draw_move(plate, fromPole, toPole):
     global steps
     steps += 1
 
-    to_x = tower_loc[toPole] * tower_distance
-    toPole_count = len(tower_poles[toPole])
-    to_y = tower_altitude + 2 * tower_radius + toPole_count * size * 2
+    to_x = towerLocations[toPole] * towerOfDistance
+    toPole_count = len(towerRods[toPole])
+    to_y = towerOfAltitude + 2 * towerOfRadious + toPole_count * size * 2
 
     if fromPole:
-        tower_poles[fromPole].remove(plate)
-        from_x = tower_loc[fromPole] * tower_distance
-        plate.goto(from_x, tower_height)
-        plate.goto(to_x, tower_height)
+        towerRods[fromPole].remove(plate)
+        from_x = towerLocations[fromPole] * towerOfDistance
+        plate.goto(from_x, towerOfHeight)
+        plate.goto(to_x, towerOfHeight)
 
     plate.goto(to_x, to_y)
-    tower_poles[toPole].append(plate)
+    towerRods[toPole].append(plate)
 
 
 def draw_move2(src, dest, s, d, plates):
@@ -215,18 +215,18 @@ def moveTower2(fromPeg, toPeg, plate, src, dest):
     global steps
     steps += 1
 
-    to_x = tower_loc[toPeg] * tower_distance
-    toPole_count = len(tower_poles[toPeg])
-    to_y = tower_altitude + 2 * tower_radius + toPole_count * size * 2
+    to_x = towerLocations[toPeg] * towerOfDistance
+    toPole_count = len(towerRods[toPeg])
+    to_y = towerOfAltitude + 2 * towerOfRadious + toPole_count * size * 2
 
     
-    tower_poles[fromPeg].remove(plate)
-    from_x = tower_loc[fromPeg] * tower_distance
-    plate.goto(from_x, tower_height)
-    plate.goto(to_x, tower_height)
+    towerRods[fromPeg].remove(plate)
+    from_x = towerLocations[fromPeg] * towerOfDistance
+    plate.goto(from_x, towerOfHeight)
+    plate.goto(to_x, towerOfHeight)
 
     plate.goto(to_x, to_y)
-    tower_poles[toPeg].append(plate)
+    towerRods[toPeg].append(plate)
 
     
         
