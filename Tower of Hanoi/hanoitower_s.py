@@ -256,7 +256,7 @@ def select_user_algorithm():
             turtle.textinput("Please Enter a Valid Number", "Please enter a valid number.")
 
 def tohIterative(num_of_disks, src, aux, dest):
-    s, d, a = 'A', 'B', 'C'
+    s, a, d = 'A', 'B', 'C'
    
     # If number of disks is even, then interchange
     # destination pole and auxiliary pole
